@@ -6,6 +6,6 @@ app = Flask(__name__)
 def home():
     return {"message": "Hello from Flask on Vercel!"}
 
-# Vercel butuh handler ini
-def handler(event, context):
-    return app(event, context)
+# Vercel akan mencari variabel "app" di file ini
+if __name__ == "__main__":
+    app.run()
