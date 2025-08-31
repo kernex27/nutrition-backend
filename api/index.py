@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return {"message": "Hello from Flask on Vercel!"}
+    return jsonify({"message": "Hello from Flask on Vercel!"})
 
-# Vercel akan mencari variabel "app" di file ini
+# Vercel akan mencari variabel `app`
 if __name__ == "__main__":
     app.run()
