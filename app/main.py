@@ -27,3 +27,24 @@ def get_foods():
     ])
 
 # Tambahkan endpoint lain sesuai kebutuhan (dummy)
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route("/")
+def root():
+    return jsonify({"message": "NIRMAS API is running 🚀"})
+
+@app.route("/users/me")
+def get_user():
+    return jsonify({
+        "id": 1,
+        "name": "Demo User",
+        "email": "demo@example.com"
+    })
+
+if __name__ == "__main__":
+    # Railway menggunakan PORT dari environment variable
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
