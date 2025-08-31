@@ -1,14 +1,11 @@
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse
-import uvicorn
+from flask import Flask
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")
-def root():
-    return JSONResponse(content={"message": "Hello from Vercel Python Backend!"})
+@app.route("/")
+def home():
+    return {"message": "Hello from Flask on Vercel!"}
 
-# hanya untuk local run
-if __name__ == "__main__":
-    uvicorn.run("index:app", host="0.0.0.0", port=8000, reload=True)
-from app.app import app  # ambil Flask instance dari app.py
+# Vercel butuh handler ini
+def handler(event, context):
+    return app(event, context)
